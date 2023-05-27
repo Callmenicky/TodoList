@@ -98,11 +98,28 @@ To set up and run the TODO list web application, follow these steps:
 ## API Documentation
 The backend API provides the following endpoints:
 
-+ GET /api/todos: Retrieves all TODOs.
-+ GET /api/todos/{id}: Retrieves a specific TODO by ID.
-+ POST /api/todos: Creates a new TODO.
-+ PUT /api/todos/{id}: Updates a specific TODO by ID.
-+ DELETE /api/todos/{id}: Deletes a specific TODO by ID.
++ **GET/api/todo** 
+    + Retrieves all TODOs.
+
++ **GET /api/todo/{id}**
+    + Retrieves a specific TODO by ID.
+
++ **POST /api/todo**
+    + Creates a new TODO.
+
++ **PUT /api/todo/{id}**
+   + Updates a specific TODO by ID.
+
++ **DELETE /api/todo/{id}**
+    + Deletes a specific TODO by ID.
+
++ **GET /api/todo/sort/{sortBy}**
+    + Sorts TODOs based on the specified parameter.
+    + Available sort options: "name", "priority", "duedate"
+
++ **GET /api/todo/filter?keyword={keyword}**
+    + Filters TODOs based on the specified keyword.
+
 
 ## License
 This project is licensed under the MIT License.
