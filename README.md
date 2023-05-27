@@ -2,13 +2,7 @@
 
 This is a scalable and well-designed TODO list web application that allows users to manage their TODOs. It provides a full stack solution with a backend API developed in C# using ASP.NET Core and a frontend user interface built with React. The application demonstrates full stack development skills, API design expertise, and software engineering best practices.
 
-## Features
-+ TODOs CRUD operations (Create, Read, Update, Delete)
-+ Filtering TODOs by status and due date
-+ Sorting TODOs by due date, status, and name
-+ Responsive user interface for managing TODOs
-
-## Application Functions
+## Application Features
 The TodoList application provides several functions to help users effectively manage their tasks and stay organized. Here are the main functions available:
 
 + **Create a TODO:** 
