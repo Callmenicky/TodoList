@@ -35,72 +35,65 @@ Before running the TODO list web application, ensure the following prerequisites
 ## Getting Started
 To set up and run the TODO list web application, follow these steps:
 
-Clone the GitHub repository to your local machine: 
+### Clone the GitHub repository to your local machine: 
     
     git clone https://github.com/your-username/todo-list-webapp.git
     
 
-Navigate to the project's root directory:
+### Navigate to the project's root directory:
 
     cd todo-list-webapp
 
 
-Configure the database connection:
+### Configure the database connection:
 
-  Open the appsettings.json file in the backend project.
-  Update the connection string with your SQL Server details.
++ Open the appsettings.json file in the backend project.
++ Update the connection string with your SQL Server details.
+
+### Install backend dependencies:
+
+- Open a terminal and navigate to the backend project's directory:
+        
+        cd backend
+        
+- Restore the backend dependencies:
+
+        dotnet restore
+
+### Run the database migrations:
+
+        dotnet ef database update
+
+### Install frontend dependencies:
+
+- Open a new terminal and navigate to the frontend project's directory:
+
+        cd ../frontend
+        
+- Install the frontend dependencies:
+
+        npm install
+
+### Build and run the application:
+- Open a terminal and navigate back to the backend project's directory:
+
+        cd ../backend
+
+- Build and run the backend API:
+
+        dotnet run
+
+- Open a new terminal and navigate to the frontend project's directory:
+
+        cd ../frontend
 
 
-Install backend dependencies:
+- Start the frontend development server:
 
-Open a terminal and navigate to the backend project's directory:
-shell
-Copy code
-cd backend
-Restore the backend dependencies:
-shell
-Copy code
-dotnet restore
-Run the database migrations:
+        npm start
 
-shell
-Copy code
-dotnet ef database update
-Install frontend dependencies:
-
-Open a new terminal and navigate to the frontend project's directory:
-shell
-Copy code
-cd ../frontend
-Install the frontend dependencies:
-shell
-Copy code
-npm install
-Build and run the application:
-
-Open a terminal and navigate back to the backend project's directory:
-
-shell
-Copy code
-cd ../backend
-Build and run the backend API:
-
-shell
-Copy code
-dotnet run
-Open a new terminal and navigate to the frontend project's directory:
-
-shell
-Copy code
-cd ../frontend
-Start the frontend development server:
-
-shell
-Copy code
-npm start
-Access the TODO list web application:
-
-Open your web browser and visit http://localhost:3000 to access the application.
+### Access the TODO list web application:
+- Open your web browser and visit http://localhost:3000 to access the application.
 
 ## API Documentation
 The backend API provides the following endpoints:
