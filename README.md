@@ -105,12 +105,11 @@ Open your web browser and visit http://localhost:3000 to access the application.
 ## API Documentation
 The backend API provides the following endpoints:
 
-GET /api/todos: Retrieves all TODOs.
-GET /api/todos/{id}: Retrieves a specific TODO by ID.
-POST /api/todos: Creates a new TODO.
-PUT /api/todos/{id}: Updates a specific TODO by ID.
-DELETE /api/todos/{id}: Deletes a specific TODO by ID.
-For detailed API documentation, refer to the API Documentation file.
++ GET /api/todos: Retrieves all TODOs.
++ GET /api/todos/{id}: Retrieves a specific TODO by ID.
++ POST /api/todos: Creates a new TODO.
++ PUT /api/todos/{id}: Updates a specific TODO by ID.
++ DELETE /api/todos/{id}: Deletes a specific TODO by ID.
 
 ## License
 This project is licensed under the MIT License.
