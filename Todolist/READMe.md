@@ -6,37 +6,25 @@ This repository contains the backend implementation of the TodoList application 
 
 The `TodoController` is responsible for handling CRUD operations for todo items. It exposes the following API endpoints:
 
-### GET /api/todo
-
-Retrieves all todo items from the database.
-
-### GET /api/todo/{id}
-
-Retrieves a specific todo item by its ID.
-
-### POST /api/todo
-
-Creates a new todo item.
-
-### PUT /api/todo/{id}
-
-Updates an existing todo item.
-
-### DELETE /api/todo/{id}
-
-Deletes a todo item.
-
-### GET /api/todo/sort/{sortBy}
-
-Retrieves the sorted list of todo items based on the specified sorting criteria. The `sortBy` parameter can have values "name", "priority", or "duedate".
-
-### GET /api/todo/filter?keyword={keyword}
-
-Retrieves the filtered list of todo items based on the specified keyword. The `keyword` parameter is used to search for matching todo items by name, description, priority, status, or due date.
+- `GET /api/todo`: Retrieves all todo items from the database.
+- `GET /api/todo/{id}`: Retrieves a specific todo item by its ID.
+- `POST /api/todo`: Creates a new todo item.
+- `PUT /api/todo/{id}`: Updates an existing todo item.
+- `DELETE /api/todo/{id}`: Deletes a todo item.
+- `GET /api/todo/sort/{sortBy}`: Retrieves the sorted list of todo items based on the specified sorting criteria.
+- `GET /api/todo/filter?keyword={keyword}`: Retrieves the filtered list of todo items based on the specified keyword.
 
 ## TodoControllerTests
 
 The `TodoControllerTests` class contains a set of unit tests written using the xUnit testing framework. These tests ensure the correctness of the `TodoController` and cover various scenarios and actions within the controller.
+
+The test methods included in the `TodoControllerTests` class are as follows:
+
+- `GetTodo_ReturnsOkResult`: Verifies the behavior of the `GetTodo` action in the `TodoController` when it returns a successful result (HTTP 200 OK).
+- `GetTodo_WithExistingId_ReturnsOkResult`: Verifies the behavior of the `GetTodo` action in the `TodoController` when called with a valid Todo ID.
+- `GetTodo_WithInvalidId_ReturnsNotFoundResult`: Verifies the behavior of the `GetTodo` action in the `TodoController` when called with an invalid Todo ID.
+- `SortTodo_ReturnsSortedTodoList`: Verifies the behavior of the `SortTodo` action in the `TodoController` when sorting the Todo list based on priority.
+- `FilterTodoList_ReturnsFilteredTodoList`: Verifies the behavior of the `FilterTodoList` action in the `TodoController` when filtering the Todo list based on a search term.
 
 To run the tests:
 
