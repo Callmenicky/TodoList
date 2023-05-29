@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+# TodoList Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the frontend implementation of the TodoList application using React.js. The frontend consists of the CRUD component, which provides user interfaces to manage todo items.
 
-## Available Scripts
+## CRUD Component
 
-In the project directory, you can run:
+The `CRUD` component is responsible for handling CRUD operations for todo items. It includes features such as creating a new task, editing an existing task, deleting a task, filtering tasks, and sorting tasks. The component uses various libraries and components, such as React Bootstrap, Axios, and React Toastify, to provide an enhanced user experience.
 
-### `npm start`
+## Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Navigate to the project directory:
+    ```shell
+    cd <project-directory>
+    ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Install the dependencies:
+    ```shell
+    npm install
+    ```
 
-### `npm test`
+3. To start the Todolist application, run the following command in the project directory:
+    ```shell
+    npm start
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to access the application.
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Add Task
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To add a task to the Todolist:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Enter the name, description, due date, status, and priority of the task in the input fields.
+2. Click the "Submit" button.
+3. The task will be added to the Todolist, and you will receive a success notification.
 
-### `npm run eject`
+### Edit Task
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To edit a task in the Todolist:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Click the "Edit" button next to the task you want to edit.
+2. Update the name, description, due date, status, or priority of the task in the modal that appears.
+3. Click the "Save Changes" button.
+4. The task will be updated in the Todolist, and you will receive a success notification.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Delete Task
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To delete a task from the Todolist:
 
-## Learn More
+1. Click the "Delete" button next to the task you want to delete.
+2. Confirm the deletion when prompted.
+3. The task will be deleted from the Todolist, and you will receive a success notification.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Filter Tasks
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To filter tasks in the Todolist:
 
-### Code Splitting
+1. Enter the filter criteria in the "Filter" input field.
+2. Click the "Filter" button.
+3. The Todolist will display only the tasks that match the filter criteria.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Sort Tasks
 
-### Analyzing the Bundle Size
+To sort tasks in the Todolist:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Select a sorting option from the "Sort" dropdown.
+2. Click the "Sort" button.
+3. The Todolist will display the tasks sorted based on the selected sorting option.
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Dependencies
 
-### Advanced Configuration
+The TodoList frontend uses the following dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- React: A JavaScript library for building user interfaces.
+- React Bootstrap: A UI library that provides pre-built Bootstrap components for React.
+- Axios: A promise-based HTTP client for making API requests.
+- React Toastify: A notification library for displaying success/error messages.
 
-### Deployment
+## Test Cases
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The application includes a set of test cases implemented using the `@testing-library/react` library. These test cases ensure the correctness of the application's functionality.
 
-### `npm run build` fails to minify
+### `CRUD.test.js`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This file contains the test cases for the CRUD functionality of the application. **Please be aware that the test cases are tested on example data in a duplicate component of CRUD2**. Let's analyze each test case:
+
+1. **displays correct number of rows**: This test case verifies that the table in the application displays the correct number of rows. It counts the number of rows excluding the header row and expects the count to be 2.
+
+2. **adds a new task**: This test case tests the functionality of adding a new task. It fills in the task details in the input fields, clicks the submit button, and then waits for the task to be added to the table. It asserts that the input fields are still present after the task is added.
+
+3. **edits an existing task**: This test case tests the functionality of editing an existing task. It finds a specific task in the table based on its name, clicks the edit button to open the edit modal, modifies the task details in the modal, saves the changes, and then asserts that the updated task details are still present in the table.
+
+4. **deletes a task**: This test case tests the functionality of deleting a task. It finds a specific task in the table based on its name, clicks the delete button, and then verifies that the deleted task is no longer present in the table while another task is still present.
+
+These test cases cover the major CRUD operations of the application and ensure that the functionality is working as expected.
+
+#### Testing Library
+
+The tests are written using **React Testing Library**, which provides a set of utilities to interact with React components and assert their behavior. It focuses on testing the application from the user's perspective.
+
+For more information on React Testing Library, refer to the [official documentation](https://testing-library.com/docs/react-testing-library/intro/).
+
+#### Jest
+
+**Jest** is a testing framework commonly used with React applications. It provides a simple and intuitive API for writing tests and comes with built-in features like mocking, assertions, and code coverage.
+
+## Contributing
+
+Contributions are welcome! If you find any issues or want to add new features, feel free to submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+Special thanks to the open-source projects and libraries that were used in building this TodoList frontend.
