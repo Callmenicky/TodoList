@@ -61,6 +61,7 @@ const CRUD =()=> {
 
     useEffect(() => {
         getData();
+        //setData(empdata);
     },[])
 
     const getData = () =>{
@@ -151,7 +152,15 @@ const CRUD =()=> {
     }
 
     const handleFilter = () => {
-        axios.get(`https://localhost:7139/api/Todo/filter?keyword=${filterValue}`)
+
+        if(filterValue == "")
+        {
+            getData();
+        }
+
+        else
+        {
+           axios.get(`https://localhost:7139/api/Todo/filter?keyword=${filterValue}`)
           .then((response) => {
             setData(response.data);
           })
@@ -159,6 +168,8 @@ const CRUD =()=> {
             console.log(error);
           });
           clear();
+        }
+        
       };
       
       const handleSort = () => {
@@ -192,7 +203,7 @@ const CRUD =()=> {
         <Fragment>
             <ToastContainer></ToastContainer>
             <Container>
-            <h1 className="mt-4 mb-4">TodoList Application</h1>
+            <h1 className="mt-4 mb-4" data-testid="crud-heading">TodoList Application</h1>
             <Form>
                 <Row className="mb-3">
                 <Form.Group as={Col} controlId="formName">

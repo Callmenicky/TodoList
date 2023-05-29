@@ -24,7 +24,12 @@ namespace Todolist.Controllers
                 return NotFound();
             }
 
-            return await _todoContext.Todolist.ToListAsync();
+            var todos = await _todoContext.Todolist.ToListAsync();
+            if (todos == null)
+            {
+                return NotFound();
+            }
+            return Ok(todos);
 
         }
 
@@ -35,13 +40,12 @@ namespace Todolist.Controllers
             {
                 return NotFound();
             }
-            var todo = _todoContext.Todolist.Find(id);
+            var todo = await _todoContext.Todolist.FindAsync(id);
             if (todo == null)
             {
                 return NotFound();
             }
-            return todo;
-
+            return Ok(todo);
         }
 
         [HttpPost]

@@ -1,95 +1,125 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import axios from 'axios';
-import CRUD from './CRUD';
+import { render, screen, waitFor, fireEvent, within } from '@testing-library/react';
+import CRUD2 from './CRUD2';
+import '@testing-library/jest-dom/extend-expect';
 
-// Mock axios to simulate API requests
-jest.mock('axios');
+describe('CRUD2', () => {
 
-describe('CRUD Component', () => {
-  beforeEach(() => {
-    // Clear mocks and reset component state before each test
-    jest.clearAllMocks();
+  test('displays correct number of rows', () => {
+    render(<CRUD2/>);
+
+      const rows = screen.queryAllByRole('row');
+      // Exclude the header row
+      const actualRowCount = rows.length - 1;
+
+      expect(actualRowCount).toBe(2);
   });
 
-  describe('Unit Tests', () => {
-    it('renders the component without errors', () => {
-      render(<CRUD />);
-      // Add your assertion here, if needed
+  test('adds a new task', async () => {
+    render(<CRUD2 />);
+    
+    // Fill in the task details
+    const nameInput = screen.getByPlaceholderText('Enter Name');
+    const descriptionInput = screen.getByPlaceholderText('Enter Description');
+    const dueDateInput = screen.getByPlaceholderText('Enter Due Date');
+    const statusInput = screen.getByLabelText('Status');
+    const priorityInput = screen.getByLabelText('Priority');
+    const submitButton = screen.getByText('Submit');
+    
+    fireEvent.change(nameInput, { target: { value: 'New Task' } });
+    fireEvent.change(descriptionInput, { target: { value: 'Task Description' } });
+    fireEvent.change(dueDateInput, { target: { value: '2023-05-20' } });
+    fireEvent.change(statusInput, { target: { value: 'In Progress' } });
+    fireEvent.change(priorityInput, { target: { value: 'High' } });
+
+    // Submit the form
+    fireEvent.click(submitButton);
+    
+    // Wait for the task to be added to the table
+    await waitFor(() => {
+      expect(nameInput).toBeInTheDocument();
+      expect(descriptionInput).toBeInTheDocument();
+      expect(dueDateInput).toBeInTheDocument();
+      expect(statusInput).toBeInTheDocument();
+      expect(priorityInput).toBeInTheDocument();
     });
-
-    it('handles form input changes correctly', () => {
-      render(<CRUD />);
-      const nameInput = screen.getByLabelText('Name');
-      const descriptionInput = screen.getByLabelText('Description');
-
-      fireEvent.change(nameInput, { target: { value: 'Test Name' } });
-      fireEvent.change(descriptionInput, { target: { value: 'Test Description' } });
-
-      // Add your assertions here to verify the state changes
-    });
-
-    // Add more unit tests as needed
+    
   });
 
-  describe('Integration Tests', () => {
-    it('displays a list of tasks fetched from the API', async () => {
-      const mockData = [
-        {
-          id: 1,
-          name: 'Sweep the floor',
-          description: 'Sweep the floor and the room',
-          due_date: '25th August 2023',
-          status: 'Pending',
-          priority: 'High',
-        },
-        {
-          id: 2,
-          name: 'Clean the fan',
-          description: 'Clean the Fan of my room',
-          due_date: '26th August 2023',
-          status: 'In Progress',
-          priority: 'Low',
-        },
-      ];
+  test('edits an existing task', async () => {
+    render(<CRUD2 />);
+    
+    // Get the task name and button name
+    const taskName = 'Sweep the floor'; // Replace 'Task Name' with the actual name or identifier of the row
+    const buttonName = 'Edit';
+    
+    // Find the row element containing the task name
+    const row = screen.getByText(taskName).closest('tr');
 
-      axios.get.mockResolvedValueOnce({ data: mockData });
+    // Retrieve all cells within the row
+    const cells = row.querySelectorAll('td');
+    const status = cells[4].textContent;
+    const priority = cells[5].textContent;
 
-      render(<CRUD />);
+    // Find the button within the row element to open the modal
+    const editButton = within(row).getByRole('button', { name: buttonName });
 
-      // Wait for API request to complete
-      await screen.findByText('Sweep the floor');
+    // Open the modal
+    fireEvent.click(editButton);
 
-      // Add your assertions here to verify the rendered tasks
+    // Find the modal element
+    const modal = screen.getByRole('dialog');
+    
+    // Find the button within the modal footer without role constraint
+    const saveButton = within(modal).getByRole('button', { name: 'Save Changes' });
+
+
+    // Find the input fields within the modal body
+    const nameInput = within(modal).getByPlaceholderText('Enter Name');
+    const descriptionInput = within(modal).getByPlaceholderText('Enter Description');
+    const dueDateInput = within(modal).getByPlaceholderText('Enter Due Date');
+    const statusSelect = within(modal).getByDisplayValue(status);
+    const prioritySelect = within(modal).getByDisplayValue(priority);
+
+    // Modify the task details
+    fireEvent.change(nameInput, { target: { value: 'Updated Task' } });
+    fireEvent.change(descriptionInput, { target: { value: 'Updated Description' } });
+    fireEvent.change(dueDateInput, { target: { value: '2023-05-31' } });
+    fireEvent.select(statusSelect, { target: { value: 'In Progress' } });
+    fireEvent.select(prioritySelect, { target: { value: 'Very High' } });
+
+    // Click the save button
+    fireEvent.click(saveButton);
+        expect(nameInput).toBeInTheDocument();
+        expect(descriptionInput).toBeInTheDocument();
+        expect(dueDateInput).toBeInTheDocument();
+        expect(statusSelect).toBeInTheDocument();
+        expect(prioritySelect).toBeInTheDocument();
     });
+  
+    test('deletes a task', () => {
+      render(<CRUD2 />);
+    
+       // Get the task name and button name
+      const taskName = 'Clean the fan'; 
+      const buttonName = 'Delete';
 
-    it('adds a new task when the submit button is clicked', async () => {
-      const mockData = {
-        id: 3,
-        name: 'New Task',
-        description: 'New Task Description',
-        due_date: '27th August 2023',
-        status: 'Pending',
-        priority: 'Medium',
-      };
+      // Find the row element containing the task name
+      const row = screen.getByText(taskName).closest('tr');
 
-      axios.post.mockResolvedValueOnce({ data: mockData });
-
-      render(<CRUD />);
-      const nameInput = screen.getByLabelText('Name');
-      const descriptionInput = screen.getByLabelText('Description');
-      const submitButton = screen.getByText('Submit');
-
-      fireEvent.change(nameInput, { target: { value: 'New Task' } });
-      fireEvent.change(descriptionInput, { target: { value: 'New Task Description' } });
-      fireEvent.click(submitButton);
-
-      // Wait for API request to complete
-      await screen.findByText('New Task');
-
-      // Add your assertions here to verify the new task is added
+      // Find the button within the row element to open the modal
+      const deleteButton = within(row).getByRole('button', { name: buttonName });
+    
+      // Click the delete button for the task
+      fireEvent.click(deleteButton);
+    
+      // Verify the task is deleted
+      const deletedTask = screen.queryByText('Clean the fan');
+      const otherTask = screen.queryByText('Sweep the floor');
+      expect(otherTask).toBeInTheDocument();
+      expect(deletedTask).not.toBeInTheDocument();
+      
     });
-
-    // Add more integration tests as needed
-  });
+  
+  
+  
 });
