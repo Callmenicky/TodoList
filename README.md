@@ -61,12 +61,12 @@ To set up and run the TODO list web application, follow these steps:
 
 ### Clone the GitHub repository to your local machine: 
     
-    git clone https://github.com/your-username/todo-list-webapp.git
+    git clone https://github.com/Callmenicky/Todolist.git
     
 
 ### Navigate to the project's root directory:
 
-    cd todo-list-webapp
+    cd TodoList-main
 
 
 ### Configure the database connection:
