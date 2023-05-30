@@ -78,7 +78,7 @@ To set up and run the TODO list web application, follow these steps:
 
 - Open a terminal and navigate to the backend project's directory:
         
-        cd ../Todolist
+        cd ../Todolist/TodoList
         
 - Restore the backend dependencies:
 
@@ -101,7 +101,7 @@ To set up and run the TODO list web application, follow these steps:
 ### Build and run the application:
 - Open a terminal and navigate back to the backend project's directory:
 
-        cd ../Todolist
+        cd ../Todolist/TodoList
 
 - Build and run the backend API:
 
