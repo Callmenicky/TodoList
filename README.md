@@ -72,7 +72,9 @@ To set up and run the TODO list web application, follow these steps:
 ### Configure the database connection:
 
 + Open the appsettings.json file in the backend project.
++ You may download the existing data/format of the database thru TodoDB.bak file to setup your own database
 + Update the connection string with your SQL Server details.
+
 
 ### Install backend dependencies:
 
