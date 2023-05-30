@@ -8350,11 +8350,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\Todolist\\Todolist\\Todolist.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\TodoList-main\\Todolist\\Todolist\\Todolist.csproj",
       "projectName": "Todolist",
-      "projectPath": "C:\\Users\\User\\source\\repos\\Todolist\\Todolist\\Todolist.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\TodoList-main\\Todolist\\Todolist\\Todolist.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\Todolist\\Todolist\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\TodoList-main\\Todolist\\Todolist\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
